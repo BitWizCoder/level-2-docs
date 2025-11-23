@@ -2,3 +2,46 @@
 title: Lesson 2
 description: Writing and Appending Files with the fs Module
 ---
+
+Writing to files
+
+```js title="write-file.js"
+// @ts-nocheck
+const fs = require("fs");
+
+const content1 = "This is a content \n node.js is awesome!!!";
+
+try {
+  fs.writeFileSync("./output/test-sync.txt", content1);
+  console.log("file written sync");
+} catch (error) {
+  console.error(error.message);
+}
+
+const content2 = " This is a content two \n Ashyncronius!!!";
+
+fs.writeFileSync("./output/test-async.txt", content2, (error) => {
+  if (error) {
+    console.error(error.message);
+  } else {
+    console.log("file written asynchroniusly");
+  }
+});
+```
+
+Appending files
+
+```js title="append-file.js"
+const fs = require("fs");
+
+fs.writeFileSync("./output/app.log", "Application Started\n");
+console.log("file created");
+
+const logEntry1 = `${new Date().toISOString()} user logged in\n`;
+fs.appendFileSync("./output/app.log", logEntry1);
+
+const logEntry2 = `${new Date().toISOString()} data fetched`;
+fs.appendFileSync("./output/app.log", logEntry2);
+
+console.log("task complete");
+```
