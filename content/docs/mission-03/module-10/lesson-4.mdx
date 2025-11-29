@@ -3,7 +3,29 @@ title: Lesson 4
 description: Introduction to the path Module
 ---
 
-```js title=""
+```js title="path-basic.js"
+const path = require("path");
 
+// __filename & __dirname → current file info
+console.log("Current file info: \n");
+console.log("Filename: ", __filename); // Full path of this file
+console.log("Directory: ", __dirname); // Directory of this file
+
+console.log("\n" + "-".repeat(50) + "\n");
+
+const filePath = "/noman/documents/nexLevel.pdf";
+
+console.log("analyzing Path :", filePath, "\n");
+console.log("Directory: ", path.dirname(filePath)); // Folder path
+console.log("Base name: ", path.basename(filePath)); // File with extension
+console.log("File Extension: ", path.extname(filePath)); // .pdf
+console.log("File Name: ", path.basename(filePath, path.extname(filePath))); // Filename only
+
+console.log("\n" + "-".repeat(50) + "\n");
+
+const parsed = path.parse(filePath);
+console.log("Parsed path object: ", parsed); // full parsed info as object
+
+console.log("\n" + "-".repeat(50) + "\n");
+console.log("Formated path: ", path.format(parsed)); // Re-build path from parsed object
 ```
- 
