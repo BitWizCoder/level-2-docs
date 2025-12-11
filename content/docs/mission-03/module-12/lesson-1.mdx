@@ -1,0 +1,103 @@
+---
+title: Lesson 1
+description: Create a simple server with express.js & typescript .mp4
+---
+
+Initiate the project
+
+```bash title="Terminal"
+pnpm -init
+```
+
+create .gitignore file and put
+
+```bash title=".gitignore"
+/node_modules
+.env
+```
+
+install express
+
+```bash title="Terminal"
+pnpm install express --save
+```
+
+install typescript
+
+```bash title="Terminal"
+pnpm install -D typescript
+```
+
+initialize typescript
+
+```bash title="Terminal"
+npx tsc --init
+```
+
+Uncomment these two lines
+
+```json title="tsconfig.json"
+"rootDir": "./src",
+"outDir": "./dist",
+```
+
+Comment these three lines
+
+```json title="tsconfig.json"
+    // Other Outputs
+    // "sourceMap": true,
+    // "declaration": true,
+    // "declarationMap": true,
+
+```
+
+Comment these also
+
+```json title="tsconfig.json"
+// "jsx": "react-jsx",
+// "verbatimModuleSyntax": true,
+```
+
+write the initial of the server
+
+```ts title="./src/server.js"
+import express from "express";
+const app = express();
+const port = 5000;
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+```
+
+install express types
+
+```bash title="Terminal"
+pnpm i --save-dev @types/express
+```
+
+set types for req and res
+
+```ts title="./src/server.js"
+import express, { Request, Response } from "express";
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello World!");
+});
+```
+
+install tsx
+
+```bash title="Terminal"
+pnpm i -D tsx
+```
+
+add dev script
+
+```json title="package.json"
+"dev": "tsx watch ./src/server.ts"
+```
