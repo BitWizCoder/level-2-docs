@@ -1,0 +1,28 @@
+---
+title: Lesson 4
+description: Solve the previous error, add .env & connect with GitHub
+---
+
+
+
+Create .env file and put the connection string there.
+
+```typescript title=".env"
+CONNECTION_STR=
+```
+
+install dotenv
+
+
+```bash title="Terminal"
+pnpm install dotenv --save
+```
+
+Import and configure dotenv
+
+
+```typescript title="./src/server.js"
+import dotenv from 'dotenv'
+
+dotenv.config({ path: path.join(process.cwd(), ".env") });
+```
