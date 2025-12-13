@@ -3,15 +3,38 @@ title: Lesson 2
 description: Installing Postgres as database
 ---
 
+Add json parser
+
+```typescript title="./src/server.js"
+// Parser
+app.use(express.json());
+```
+
 install [node-postgres](https://www.npmjs.com/package/pg)
 
 ```bash title="Terminal"
 pnpm i pg
 ```
 
-Sign in to Neon [Neon](https://neon.com/) 
+Sign in to Neon [Neon](https://neon.com/) and create a database.
 
 
-create root (get) route
+and import pool from pg
 
-add json parser
+```typescript title="./src/server.js"
+import {Pool} from "pg" 
+```
+
+also install pg types package
+
+```typescript title="./src/server.js"
+pnpm i --save-dev @types/pg
+```
+
+create a pool with DB using connection string
+
+```typescript title="./src/server.js"
+const pool = new Pool({
+  connectionString: `${process.env.CONNECTION_STR}`,
+});
+```
