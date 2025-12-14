@@ -4,6 +4,27 @@ description: Not Found Route & Middleware
 ---
 
 
+Not Found Route 
+```typescript title="./src/server.js"
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "Route not found!!",
+    path: req.path,
+  });
+});
+```
+
+Logger Middleware
 
 ```typescript title="./src/server.js"
+// Logger Middleware
+const logger = (req: Request, res: Response, next: NextFunction) => {
+  console.log(`[${new Date().toISOString()}]\n ${req.method} ${req.path}\n`);
+  next();
+};
+
+app.get("/", logger, (req: Request, res: Response) => {
+  res.send("Hello Next Level Developers!!");
+});
 ```
