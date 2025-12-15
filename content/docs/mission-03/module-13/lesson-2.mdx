@@ -1,0 +1,32 @@
+---
+title: Lesson 2
+description: Why Configuration Is Important?
+---
+
+
+## 📽️ Modular Architecture: The Refactoring Plan
+
+This lesson introduces the modular structure we **will be implementing**. The goal is to establish a clean, layered architecture by strictly separating concerns in our codebase.
+
+### ⚙️ Current Setup Overview
+
+* **Database:** We are currently utilizing a single database instance.
+* **Environment Variables:** Configuration is handled using `dotenv` and accessed via `process.env`.
+
+### 🔄 Architectural Changes (Separation of Concerns)
+
+We **will reorganize** our codebase to follow the standard **Router ⟶ Middleware ⟶ Controller ⟶ Service** flow. 
+
+| File/Layer | Responsibility | Action Item |
+| :--- | :--- | :--- |
+| **Configuration** | Centralize configuration loading. | We **will move** environment and database configuration setup from `server.ts` to a dedicated configuration file (e.g., `config.ts`). |
+| **`server.ts`** | **HTTP Server** | In `server.ts`, **we will have only the server** logic required to create and start the HTTP server (listening on a specific port). |
+| **`app.ts`** | **Application Setup** | We **will move** operations related to application setup (e.g., Express initialization, global middleware, and route imports) to `app.ts`. |
+| **`route.ts`** | **Routing** | **We will have a `route.ts`** file which will define all API paths. Requests coming from `route.ts` **will go to the Controller**. |
+| **`middleware`** | **Request Interception** | **We will have middleware** in between the route and the controller/service to handle tasks like authentication or logging. |
+| **`controller.ts`** | **Request Handling** | The controller handles the HTTP request/response cycle and delegates business tasks to the Service layer. |
+| **`service.ts`** | **Business Logic** | **We will move all core business logic** (e.g., data manipulation, validation, and direct database interaction) to `service.ts`. |
+
+### 💡 Implementation Strategy
+
+The theoretical concepts for this architecture can initially feel abstract and hard to understand. To ensure practical application, **we will do these things in code** using our existing project by simply **shifting things around** into this new file structure.
